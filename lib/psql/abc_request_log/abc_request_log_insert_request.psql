@@ -5,29 +5,29 @@
  * @param p_cmp_id               The company ID.
  * @param p_usr_id               The user ID.
  * @param p_pag_id               The ID of the requested page.
- * @param p_query_string         The query string.
- * @param p_request_method       The method of the page request.
- * @param p_http_referrer         The referrer of the page request.
+ * @param p_rql_request         The query string.
+ * @param p_rql_method       The method of the page request.
+ * @param p_rql_referrer         The referrer of the page request.
  * @param p_remote_addr          The IP address of the page request.
- * @param p_http_accept_language The accepted language of the page requester.
- * @param p_http_user_agent      The user agent of the page requester.
- * @param p_query_count          The number of queries required for fulfilling the page request.
- * @param p_time                 The time in seconds that was required to process the page request.
- * @param p_size                 The size (in bytes) of the page.
+ * @param p_rql_accept_language The accepted language of the page requester.
+ * @param p_rql_user_agent      The user agent of the page requester.
+ * @param p_rql_number_of_queries          The number of queries required for fulfilling the page request.
+ * @param p_rql_time                 The time in seconds that was required to process the page request.
+ * @param p_rql_size                 The size (in bytes) of the page.
  */
-create procedure abc_request_log_insert_request( in p_ses_id               @log_request.ses_id%type@,
-                                                 in p_cmp_id               @log_request.cmp_id%type@,
-                                                 in p_usr_id               @log_request.usr_id%type@,
-                                                 in p_pag_id               @log_request.pag_id%type@,
-                                                 in p_query_string         @log_request.rql_request%type@,
-                                                 in p_request_method       @log_request.rql_method%type@,
-                                                 in p_http_referrer        @log_request.rql_referrer%type@,
-                                                 in p_remote_addr          varchar(15),
-                                                 in p_http_accept_language @log_request.rql_language%type@,
-                                                 in p_http_user_agent      @log_request.rql_user_agent%type@,
-                                                 in p_query_count          @log_request.rql_number_of_queries%type@,
-                                                 in p_time                 @log_request.rql_time%type@,
-                                                 in p_size                 @log_request.rql_size%type@ )
+create procedure abc_request_log_insert_request( in p_ses_id                 @log_request.ses_id%type@,
+                                                 in p_cmp_id                 @log_request.cmp_id%type@,
+                                                 in p_usr_id                 @log_request.usr_id%type@,
+                                                 in p_pag_id                 @log_request.pag_id%type@,
+                                                 in p_rql_request            @log_request.rql_request%type@,
+                                                 in p_rql_method             @log_request.rql_method%type@,
+                                                 in p_rql_referrer           @log_request.rql_referrer%type@,
+                                                 in p_remote_addr            varchar(15),
+                                                 in p_rql_accept_language    @log_request.rql_accept_language%type@,
+                                                 in p_rql_user_agent         @log_request.rql_user_agent%type@,
+                                                 in p_rql_number_of_queries  @log_request.rql_number_of_queries%type@,
+                                                 in p_rql_time               @log_request.rql_time%type@,
+                                                 in p_rql_size               @log_request.rql_size%type@ )
 modifies sql data
 -- type: singleton1
 begin
@@ -50,15 +50,15 @@ begin
   ,       p_usr_id
   ,       p_pag_id
   ,       now()
-  ,       p_query_string
-  ,       p_request_method
-  ,       p_http_referrer
+  ,       p_rql_request
+  ,       p_rql_method
+  ,       p_rql_referrer
   ,       inet_aton(p_remote_addr)
-  ,       p_http_accept_language
-  ,       p_http_user_agent
-  ,       p_query_count
-  ,       p_time
-  ,       p_size )
+  ,       p_rql_accept_language
+  ,       p_rql_user_agent
+  ,       p_rql_number_of_queries
+  ,       p_rql_time
+  ,       p_rql_size )
   ;
 
   select last_insert_id() rql_id;

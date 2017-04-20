@@ -13,18 +13,18 @@ class RequestLoggerLight implements RequestLogger
 {
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * If true the HTTP page request must be logged.
-   *
-   * @var bool
-   */
-  public $logRequest;
-
-  /**
    * If true the HTTP page request details (i.e. cookies, post variables and queries) must be logged.
    *
    * @var bool
    */
   public $logRequestDetails;
+
+  /**
+   * If true the HTTP page request must be logged.
+   *
+   * @var bool
+   */
+  public $logRequests;
 
   /**
    * The ID of the logged page request.
@@ -39,7 +39,7 @@ class RequestLoggerLight implements RequestLogger
    */
   public function __construct()
   {
-    $this->logRequest        = true;
+    $this->logRequests       = true;
     $this->logRequestDetails = false;
   }
 
@@ -54,7 +54,7 @@ class RequestLoggerLight implements RequestLogger
    */
   public function logRequest($status)
   {
-    if ($this->logRequest)
+    if ($this->logRequests)
     {
       $abc = Abc::getInstance();
 

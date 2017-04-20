@@ -70,7 +70,7 @@ class RequestLoggerLight implements RequestLogger
                                                           mb_substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, C::LEN_RQL_USER_AGENT),
                                                           $status,
                                                           count(Abc::$DL->getQueryLog()),
-                                                          microtime(true) - Abc::$time0);
+                                                          (Abc::$time0!==null) ? microtime(true) - Abc::$time0 : null);
 
       if ($this->logRequestDetails)
       {

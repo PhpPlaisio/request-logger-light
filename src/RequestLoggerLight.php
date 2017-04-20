@@ -16,6 +16,9 @@ class RequestLoggerLight implements RequestLogger
    * If true the HTTP page request details (i.e. cookies, post variables and queries) must be logged.
    *
    * @var bool
+   *
+   * @api
+   * @since 1.0.0
    */
   public $logRequestDetails;
 
@@ -23,6 +26,9 @@ class RequestLoggerLight implements RequestLogger
    * If true the HTTP page request must be logged.
    *
    * @var bool
+   *
+   * @api
+   * @since 1.0.0
    */
   public $logRequests;
 
@@ -30,6 +36,9 @@ class RequestLoggerLight implements RequestLogger
    * The ID of the logged page request.
    *
    * @var int|null
+   *
+   * @api
+   * @since 1.0.0
    */
   public $rqlId;
 

@@ -11,9 +11,9 @@
  * @param p_remote_addr            The IP address of the page request.
  * @param p_rql_accept_language    The accepted language of the page requester.
  * @param p_rql_user_agent         The user agent of the page requester.
+ * @param p_rql_status_code        The HTTP status code.
  * @param p_rql_number_of_queries  The number of queries required for fulfilling the page request.
  * @param p_rql_time               The time in seconds that was required to process the page request.
- * @param p_rql_size               The size (in bytes) of the page.
  */
 create procedure abc_request_log_insert_request( in p_ses_id                 @log_request.ses_id%type@,
                                                  in p_cmp_id                 @log_request.cmp_id%type@,

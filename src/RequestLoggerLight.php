@@ -13,23 +13,32 @@ class RequestLoggerLight implements RequestLogger
 {
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * If true the HTTP page request must be logged.
-   *
-   * @var bool
-   */
-  public $logRequest;
-
-  /**
    * If true the HTTP page request details (i.e. cookies, post variables and queries) must be logged.
    *
    * @var bool
+   *
+   * @api
+   * @since 1.0.0
    */
   public $logRequestDetails;
+
+  /**
+   * If true the HTTP page request must be logged.
+   *
+   * @var bool
+   *
+   * @api
+   * @since 1.0.0
+   */
+  public $logRequests;
 
   /**
    * The ID of the logged page request.
    *
    * @var int|null
+   *
+   * @api
+   * @since 1.0.0
    */
   public $rqlId;
 
@@ -39,7 +48,7 @@ class RequestLoggerLight implements RequestLogger
    */
   public function __construct()
   {
-    $this->logRequest        = true;
+    $this->logRequests       = true;
     $this->logRequestDetails = false;
   }
 
@@ -54,7 +63,7 @@ class RequestLoggerLight implements RequestLogger
    */
   public function logRequest($status)
   {
-    if ($this->logRequest)
+    if ($this->logRequests)
     {
       $abc = Abc::getInstance();
 
@@ -66,11 +75,11 @@ class RequestLoggerLight implements RequestLogger
                                                           mb_substr($_SERVER['REQUEST_METHOD'] ?? '', 0, C::LEN_RQL_METHOD),
                                                           mb_substr($_SERVER['HTTP_REFERER'] ?? '', 0, C::LEN_RQL_REFERRER),
                                                           $_SERVER['REMOTE_ADDR'] ?? null,
-                                                          mb_substr($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '', 0, C::LEN_RQL_LANGUAGE),
+                                                          mb_substr($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '', 0, C::LEN_RQL_ACCEPT_LANGUAGE),
                                                           mb_substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, C::LEN_RQL_USER_AGENT),
-                                                          null,
-                                                          microtime(true) - Abc::$time0,
-                                                          null);
+                                                          $status,
+                                                          count(Abc::$DL->getQueryLog()),
+                                                          (Abc::$time0!==null) ? microtime(true) - Abc::$time0 : null);
 
       if ($this->logRequestDetails)
       {

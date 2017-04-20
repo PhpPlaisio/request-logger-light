@@ -21,13 +21,13 @@ CREATE TABLE LOG_REQUEST (
   rql_request VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_method VARCHAR(8) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_referrer VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci,
-  rql_ip INT,
+  rql_ip INT UNSIGNED,
   rql_host_name VARCHAR(80) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_accept_language VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_user_agent VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci,
+  rql_status_code SMALLINT,
   rql_number_of_queries INT,
   rql_time FLOAT,
-  rql_size INT,
   CONSTRAINT PRIMARY_KEY PRIMARY KEY (rql_id)
 );
 
@@ -67,6 +67,11 @@ The user agent use the request the page
 */
 
 /*
+COMMENT ON COLUMN LOG_REQUEST.rql_status_code
+The HTTP status code.
+*/
+
+/*
 COMMENT ON COLUMN LOG_REQUEST.rql_number_of_queries
 The number of queries executed for processing the page request
 */
@@ -90,7 +95,7 @@ CREATE TABLE LOG_REQUEST_POST (
 
 CREATE TABLE LOG_REQUEST_QUERY (
   rqq_id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL,
-  rql_id INTEGER NOT NULL,
+  rql_id INTEGER UNSIGNED NOT NULL,
   rqq_query MEDIUMBLOB NOT NULL,
   rqq_time FLOAT NOT NULL,
   CONSTRAINT PRIMARY_KEY PRIMARY KEY (rqq_id)

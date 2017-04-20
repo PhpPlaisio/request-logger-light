@@ -1,0 +1,21 @@
+/**
+ * Inserts a cookie in the request log.
+ *
+ * @param p_rql_id       The ID of the request log.
+ * @param p_rcl_variable The name of the cookie.
+ * @param p_rcl_value    The value of the cookie.
+ */
+create procedure abc_request_log_insert_cookie( in p_rql_id       @log_request_cookie.rql_id%type@
+,                                               in p_rcl_variable @log_request_cookie.rcl_variable%type@
+,                                               in p_rcl_value    @log_request_cookie.rcl_value%type@ )
+modifies sql data
+-- type: none
+begin
+  insert into LOG_REQUEST_COOKIE( rql_id
+  ,                               rcl_variable
+  ,                               rcl_value )
+  values( p_rql_id
+  ,       p_rcl_variable
+  ,       p_rcl_value )
+  ;
+end

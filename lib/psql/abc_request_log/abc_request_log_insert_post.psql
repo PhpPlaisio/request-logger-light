@@ -1,0 +1,21 @@
+/**
+ * Inserts a post variable in the request log.
+ *
+ * @param p_rql_id       The ID of the request log.
+ * @param p_rlp_variable The name of the post variable.
+ * @param p_rlp_value    The value of the post variable.
+ */
+create procedure abc_request_log_insert_post( in p_rql_id       @log_request_post.rql_id%type@
+,                                             in p_rlp_variable @log_request_post.rlp_variable%type@
+,                                             in p_rlp_value    @log_request_post.rlp_value%type@ )
+modifies sql data
+-- type: none
+begin
+  insert into LOG_REQUEST_POST( rql_id
+  ,                             rlp_variable
+  ,                             rlp_value  )
+  values( p_rql_id
+  ,       p_rlp_variable
+  ,       p_rlp_value )
+  ;
+end

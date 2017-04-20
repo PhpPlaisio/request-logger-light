@@ -1,0 +1,21 @@
+/**
+ * Inserts a SQL query in the request log.
+ *
+ * @param p_rql_id    The ID of the request log.
+ * @param p_rqq_query The executed query.
+ * @param p_rqq_time  The duration (clock on the wall) required for executing the query.
+ */
+create procedure abc_request_log_insert_query(in p_rql_id    @log_request_query.rql_id%type@,
+                                              in p_rqq_query @log_request_query.rqq_query%type@,
+                                              in p_rqq_time  @log_request_query.rqq_time%type@)
+modifies sql data
+-- type: none
+begin
+  insert into LOG_REQUEST_QUERY( rql_id
+  ,                              rqq_query
+  ,                              rqq_time )
+  values( p_rql_id
+  ,       p_rlp_variable
+  ,       p_rlp_value )
+  ;
+end

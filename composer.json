@@ -1,0 +1,22 @@
+{
+  "name": "setbased/abc-request-logger-light",
+  "description": "ABC-Framework: Request Logger for light websites and development",
+  "keywords": [
+    "ABC",
+    "Framework",
+    "Request",
+    "Logger"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.0.0",
+    "setbased/abc": "^0.9.4",
+    "setbased/abc-request-logger": "^1.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SetBased\\Abc\\RequestLogger\\": "src/"
+    }
+  }
+}

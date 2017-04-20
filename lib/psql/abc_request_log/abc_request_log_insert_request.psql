@@ -40,7 +40,7 @@ begin
   ,                        rql_method
   ,                        rql_referrer
   ,                        rql_ip
-  ,                        rql_language
+  ,                        rql_accept_language
   ,                        rql_user_agent
   ,                        rql_number_of_queries
   ,                        rql_time

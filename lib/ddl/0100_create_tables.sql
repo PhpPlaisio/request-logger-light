@@ -21,7 +21,7 @@ CREATE TABLE LOG_REQUEST (
   rql_request VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_method VARCHAR(8) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_referrer VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci,
-  rql_ip INT,
+  rql_ip INT UNSIGNED,
   rql_host_name VARCHAR(80) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_accept_language VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_user_agent VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci,

@@ -25,9 +25,9 @@ create procedure abc_request_log_insert_request( in p_ses_id                 @lo
                                                  in p_remote_addr            varchar(15),
                                                  in p_rql_accept_language    @log_request.rql_accept_language%type@,
                                                  in p_rql_user_agent         @log_request.rql_user_agent%type@,
+                                                 in p_rql_status_code        @log_request.rql_status_code%type@,
                                                  in p_rql_number_of_queries  @log_request.rql_number_of_queries%type@,
-                                                 in p_rql_time               @log_request.rql_time%type@,
-                                                 in p_rql_size               @log_request.rql_size%type@ )
+                                                 in p_rql_time               @log_request.rql_time%type@ )
 modifies sql data
 -- type: singleton1
 begin
@@ -42,9 +42,9 @@ begin
   ,                        rql_ip
   ,                        rql_accept_language
   ,                        rql_user_agent
+  ,                        rql_status_code
   ,                        rql_number_of_queries
-  ,                        rql_time
-  ,                        rql_size )
+  ,                        rql_time )
   values( p_ses_id
   ,       p_cmp_id
   ,       p_usr_id
@@ -56,9 +56,9 @@ begin
   ,       inet_aton(p_remote_addr)
   ,       p_rql_accept_language
   ,       p_rql_user_agent
+  ,       p_rql_status_code
   ,       p_rql_number_of_queries
-  ,       p_rql_time
-  ,       p_rql_size )
+  ,       p_rql_time )
   ;
 
   select last_insert_id() rql_id;

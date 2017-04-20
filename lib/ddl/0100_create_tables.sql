@@ -25,9 +25,9 @@ CREATE TABLE LOG_REQUEST (
   rql_host_name VARCHAR(80) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_accept_language VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_user_agent VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci,
+  rql_status_code SMALLINT,
   rql_number_of_queries INT,
   rql_time FLOAT,
-  rql_size INT,
   CONSTRAINT PRIMARY_KEY PRIMARY KEY (rql_id)
 );
 
@@ -64,6 +64,11 @@ The accepted languages by the user agent
 /*
 COMMENT ON COLUMN LOG_REQUEST.rql_user_agent
 The user agent use the request the page
+*/
+
+/*
+COMMENT ON COLUMN LOG_REQUEST.rql_status_code
+The HTTP status code.
 */
 
 /*

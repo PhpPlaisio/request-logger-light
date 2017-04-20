@@ -68,9 +68,9 @@ class RequestLoggerLight implements RequestLogger
                                                           $_SERVER['REMOTE_ADDR'] ?? null,
                                                           mb_substr($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '', 0, C::LEN_RQL_ACCEPT_LANGUAGE),
                                                           mb_substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, C::LEN_RQL_USER_AGENT),
-                                                          null,
-                                                          microtime(true) - Abc::$time0,
-                                                          null);
+                                                          $status,
+                                                          count(Abc::$DL->getQueryLog()),
+                                                          microtime(true) - Abc::$time0);
 
       if ($this->logRequestDetails)
       {

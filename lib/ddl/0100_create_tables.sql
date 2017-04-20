@@ -12,11 +12,11 @@
 /*================================================================================*/
 
 CREATE TABLE LOG_REQUEST (
-  rql_id INTEGER AUTO_INCREMENT NOT NULL,
-  cmp_id SMALLINT NOT NULL,
-  pag_id SMALLINT,
-  ses_id INTEGER,
-  usr_id INTEGER NOT NULL,
+  rql_id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL,
+  cmp_id SMALLINT UNSIGNED NOT NULL,
+  pag_id SMALLINT UNSIGNED,
+  ses_id INTEGER UNSIGNED,
+  usr_id INTEGER UNSIGNED NOT NULL,
   rql_datetime DATETIME NOT NULL,
   rql_request VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_method VARCHAR(8) CHARACTER SET utf8 COLLATE utf8_general_ci,
@@ -77,19 +77,19 @@ The (real)time required for processing the page request
 */
 
 CREATE TABLE LOG_REQUEST_COOKIE (
-  rql_id INTEGER NOT NULL,
+  rql_id INTEGER UNSIGNED NOT NULL,
   rcl_variable VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   rcl_value MEDIUMTEXT CHARACTER SET utf8 COLLATE utf8_general_ci
 );
 
 CREATE TABLE LOG_REQUEST_POST (
-  rql_id INTEGER NOT NULL,
+  rql_id INTEGER UNSIGNED NOT NULL,
   rlp_variable VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   rlp_value MEDIUMTEXT CHARACTER SET utf8 COLLATE utf8_general_ci
 );
 
 CREATE TABLE LOG_REQUEST_QUERY (
-  rqq_id INTEGER AUTO_INCREMENT NOT NULL,
+  rqq_id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL,
   rql_id INTEGER NOT NULL,
   rqq_query MEDIUMBLOB NOT NULL,
   rqq_time FLOAT NOT NULL,

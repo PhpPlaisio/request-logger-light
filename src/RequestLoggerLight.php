@@ -83,14 +83,14 @@ class RequestLoggerLight implements RequestLogger
 
       if ($this->logRequestDetails)
       {
-        $oldLogQueries       = Abc::$DL->logQueries;
-        Abc::$DL->logQueries = false;
+        $oldLogQueries       = Abc::$DL::$logQueries;
+        Abc::$DL::$logQueries = false;
 
         $this->requestLogQuery();
         $this->requestLogPost($_POST);
         $this->requestLogCookie($_COOKIE);
 
-        Abc::$DL->logQueries = $oldLogQueries;
+        Abc::$DL::$logQueries = $oldLogQueries;
       }
     }
   }

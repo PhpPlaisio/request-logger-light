@@ -67,9 +67,9 @@ class RequestLoggerLight implements RequestLogger
     {
       $abc = Abc::getInstance();
 
-      $this->rqlId = Abc::$DL->abcRequestLogInsertRequest($abc->getSesId(),
-                                                          $abc->getCmpId(),
-                                                          $abc->getUsrId(),
+      $this->rqlId = Abc::$DL->abcRequestLogInsertRequest(Abc::$session->getSesId(),
+                                                          Abc::$session->getCmpId(),
+                                                          Abc::$session->getUsrId(),
                                                           $abc->getPagId(),
                                                           mb_substr($_SERVER['REQUEST_URI'] ?? '', 0, C::LEN_RQL_REQUEST),
                                                           mb_substr($_SERVER['REQUEST_METHOD'] ?? '', 0, C::LEN_RQL_METHOD),

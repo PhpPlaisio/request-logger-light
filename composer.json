@@ -3,8 +3,8 @@
   "description": "ABC-Framework: Request Logger for light websites and development",
   "keywords": [
     "ABC-Framework",
-    "request",
-    "logger"
+    "Request",
+    "Logger"
   ],
   "type": "library",
   "license": "MIT",

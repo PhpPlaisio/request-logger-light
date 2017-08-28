@@ -17,7 +17,7 @@ CREATE TABLE LOG_REQUEST (
   pag_id SMALLINT UNSIGNED,
   ses_id INTEGER UNSIGNED,
   usr_id INTEGER UNSIGNED,
-  rql_datetime DATETIME NOT NULL,
+  rql_timestamp TIMESTAMP DEFAULT current_timestamp NOT NULL,
   rql_request VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_method VARCHAR(8) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_referrer VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci,
@@ -32,8 +32,8 @@ CREATE TABLE LOG_REQUEST (
 );
 
 /*
-COMMENT ON COLUMN LOG_REQUEST.rql_datetime
-The date and time of the HTTP request
+COMMENT ON COLUMN LOG_REQUEST.rql_timestamp
+The timestamp of the HTTP request
 */
 
 /*

@@ -35,7 +35,7 @@ begin
   ,                        cmp_id
   ,                        usr_id
   ,                        pag_id
-  ,                        rql_datetime
+  ,                        rql_timestamp
   ,                        rql_request
   ,                        rql_method
   ,                        rql_referrer
@@ -49,7 +49,7 @@ begin
   ,       p_cmp_id
   ,       p_usr_id
   ,       p_pag_id
-  ,       now()
+  ,       current_timestamp
   ,       p_rql_request
   ,       p_rql_method
   ,       p_rql_referrer

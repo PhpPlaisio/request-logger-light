@@ -5,7 +5,7 @@
 /*  FileName : abc-request-logger-light.ecm                                       */
 /*  Platform : MySQL 5.6                                                          */
 /*  Version  : 1.0.0                                                              */
-/*  Date     : maandag 15 mei 2017                                                */
+/*  Date     : maandag 28 augustus 2017                                           */
 /*================================================================================*/
 /*================================================================================*/
 /* CREATE TABLES                                                                  */
@@ -13,10 +13,10 @@
 
 CREATE TABLE LOG_REQUEST (
   rql_id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL,
-  cmp_id SMALLINT UNSIGNED NOT NULL,
+  cmp_id SMALLINT UNSIGNED,
   pag_id SMALLINT UNSIGNED,
   ses_id INTEGER UNSIGNED,
-  usr_id INTEGER UNSIGNED NOT NULL,
+  usr_id INTEGER UNSIGNED,
   rql_datetime DATETIME NOT NULL,
   rql_request VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_method VARCHAR(8) CHARACTER SET utf8 COLLATE utf8_general_ci,

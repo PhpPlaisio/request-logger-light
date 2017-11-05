@@ -1,4 +1,5 @@
-/.idea
+/.idea/
+/bin/
 /composer.lock
 /src/C.php
 /vendor

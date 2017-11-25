@@ -5,7 +5,6 @@ namespace SetBased\Abc\RequestLogger;
 use SetBased\Abc\Abc;
 use SetBased\Abc\C;
 
-//----------------------------------------------------------------------------------------------------------------------
 /**
  * A HTTP page request logger for light and development websites.
  */
@@ -65,12 +64,10 @@ class RequestLoggerLight implements RequestLogger
   {
     if ($this->logRequests)
     {
-      $abc = Abc::getInstance();
-
       $this->rqlId = Abc::$DL->abcRequestLogInsertRequest(Abc::$session->getSesId(),
-                                                          Abc::$session->getCmpId(),
+                                                          Abc::$companyResolver->getCmpId(),
                                                           Abc::$session->getUsrId(),
-                                                          $abc->getPagId(),
+                                                          Abc::$abc->getPagId(),
                                                           mb_substr($_SERVER['REQUEST_URI'] ?? '', 0, C::LEN_RQL_REQUEST),
                                                           mb_substr($_SERVER['REQUEST_METHOD'] ?? '', 0, C::LEN_RQL_METHOD),
                                                           mb_substr($_SERVER['HTTP_REFERER'] ?? '', 0, C::LEN_RQL_REFERRER),

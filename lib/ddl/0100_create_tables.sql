@@ -1,11 +1,11 @@
 /*================================================================================*/
 /* DDL SCRIPT                                                                     */
 /*================================================================================*/
-/*  Title    : ABC Request Logger Light                                           */
+/*  Title    : ABC-Framework: Request Logger for light websites and development   */
 /*  FileName : abc-request-logger-light.ecm                                       */
 /*  Platform : MySQL 5.6                                                          */
-/*  Version  : 1.0.0                                                              */
-/*  Date     : maandag 28 augustus 2017                                           */
+/*  Version  :                                                                    */
+/*  Date     : zaterdag 25 november 2017                                          */
 /*================================================================================*/
 /*================================================================================*/
 /* CREATE TABLES                                                                  */
@@ -17,7 +17,7 @@ CREATE TABLE LOG_REQUEST (
   pag_id SMALLINT UNSIGNED,
   ses_id INTEGER UNSIGNED,
   usr_id INTEGER UNSIGNED,
-  rql_timestamp TIMESTAMP DEFAULT current_timestamp NOT NULL,
+  rql_timestamp TIMESTAMP DEFAULT now() NOT NULL,
   rql_request VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_method VARCHAR(8) CHARACTER SET utf8 COLLATE utf8_general_ci,
   rql_referrer VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci,

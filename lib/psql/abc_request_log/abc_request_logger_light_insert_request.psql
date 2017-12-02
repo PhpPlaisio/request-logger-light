@@ -1,0 +1,65 @@
+/**
+ * Inserts a page request in the request log.
+ *
+ * @param p_ses_id                 The session ID.
+ * @param p_cmp_id                 The company ID.
+ * @param p_usr_id                 The user ID.
+ * @param p_pag_id                 The ID of the requested page.
+ * @param p_rql_request            The query string.
+ * @param p_rql_method             The method of the page request.
+ * @param p_rql_referrer           The referrer of the page request.
+ * @param p_remote_addr            The IP address of the page request.
+ * @param p_rql_accept_language    The accepted language of the page requester.
+ * @param p_rql_user_agent         The user agent of the page requester.
+ * @param p_rql_status_code        The HTTP status code.
+ * @param p_rql_number_of_queries  The number of queries required for fulfilling the page request.
+ * @param p_rql_time               The time in seconds that was required to process the page request.
+ */
+create procedure abc_request_logger_light_insert_request(in p_ses_id                 @abc_request_log.ses_id%type@,
+                                                         in p_cmp_id                 @abc_request_log.cmp_id%type@,
+                                                         in p_usr_id                 @abc_request_log.usr_id%type@,
+                                                         in p_pag_id                 @abc_request_log.pag_id%type@,
+                                                         in p_rql_request            @abc_request_log.rql_request%type@,
+                                                         in p_rql_method             @abc_request_log.rql_method%type@,
+                                                         in p_rql_referrer           @abc_request_log.rql_referrer%type@,
+                                                         in p_remote_addr            varchar(15),
+                                                         in p_rql_accept_language    @abc_request_log.rql_accept_language%type@,
+                                                         in p_rql_user_agent         @abc_request_log.rql_user_agent%type@,
+                                                         in p_rql_status_code        @abc_request_log.rql_status_code%type@,
+                                                         in p_rql_number_of_queries  @abc_request_log.rql_number_of_queries%type@,
+                                                         in p_rql_time               @abc_request_log.rql_time%type@)
+modifies sql data
+-- type: singleton1
+begin
+  insert into ABC_REQUEST_LOG( ses_id
+  ,                            cmp_id
+  ,                            usr_id
+  ,                            pag_id
+  ,                            rql_timestamp
+  ,                            rql_request
+  ,                            rql_method
+  ,                            rql_referrer
+  ,                            rql_ip
+  ,                            rql_accept_language
+  ,                            rql_user_agent
+  ,                            rql_status_code
+  ,                            rql_number_of_queries
+  ,                            rql_time )
+  values( p_ses_id
+  ,       p_cmp_id
+  ,       p_usr_id
+  ,       p_pag_id
+  ,       current_timestamp
+  ,       p_rql_request
+  ,       p_rql_method
+  ,       p_rql_referrer
+  ,       inet_aton(p_remote_addr)
+  ,       p_rql_accept_language
+  ,       p_rql_user_agent
+  ,       p_rql_status_code
+  ,       p_rql_number_of_queries
+  ,       p_rql_time )
+  ;
+
+  select last_insert_id() rql_id;
+end

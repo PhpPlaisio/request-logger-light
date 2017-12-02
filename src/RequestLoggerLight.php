@@ -64,23 +64,24 @@ class RequestLoggerLight implements RequestLogger
   {
     if ($this->logRequests)
     {
-      $this->rqlId = Abc::$DL->abcRequestLogInsertRequest(Abc::$session->getSesId(),
-                                                          Abc::$companyResolver->getCmpId(),
-                                                          Abc::$session->getUsrId(),
-                                                          Abc::$abc->getPagId(),
-                                                          mb_substr($_SERVER['REQUEST_URI'] ?? '', 0, C::LEN_RQL_REQUEST),
-                                                          mb_substr($_SERVER['REQUEST_METHOD'] ?? '', 0, C::LEN_RQL_METHOD),
-                                                          mb_substr($_SERVER['HTTP_REFERER'] ?? '', 0, C::LEN_RQL_REFERRER),
-                                                          $_SERVER['REMOTE_ADDR'] ?? null,
-                                                          mb_substr($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '', 0, C::LEN_RQL_ACCEPT_LANGUAGE),
-                                                          mb_substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, C::LEN_RQL_USER_AGENT),
-                                                          $status,
-                                                          count(Abc::$DL->getQueryLog()),
-                                                          (Abc::$time0!==null) ? microtime(true) - Abc::$time0 : null);
+      $this->rqlId = Abc::$DL->abcRequestLoggerLightInsertRequest(
+        Abc::$session->getSesId(),
+        Abc::$companyResolver->getCmpId(),
+        Abc::$session->getUsrId(),
+        Abc::$abc->getPagId(),
+        mb_substr($_SERVER['REQUEST_URI'] ?? '', 0, C::LEN_RQL_REQUEST),
+        mb_substr($_SERVER['REQUEST_METHOD'] ?? '', 0, C::LEN_RQL_METHOD),
+        mb_substr($_SERVER['HTTP_REFERER'] ?? '', 0, C::LEN_RQL_REFERRER),
+        $_SERVER['REMOTE_ADDR'] ?? null,
+        mb_substr($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '', 0, C::LEN_RQL_ACCEPT_LANGUAGE),
+        mb_substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, C::LEN_RQL_USER_AGENT),
+        $status,
+        count(Abc::$DL->getQueryLog()),
+        (Abc::$time0!==null) ? microtime(true) - Abc::$time0 : null);
 
       if ($this->logRequestDetails)
       {
-        $oldLogQueries       = Abc::$DL::$logQueries;
+        $oldLogQueries        = Abc::$DL::$logQueries;
         Abc::$DL::$logQueries = false;
 
         $this->requestLogQuery();
@@ -115,7 +116,7 @@ class RequestLoggerLight implements RequestLogger
         }
         else
         {
-          Abc::$DL->abcRequestLogInsertCookie($this->rqlId, $fullName, $value);
+          Abc::$DL->abcRequestLoggerLightInsertCookie($this->rqlId, $fullName, $value);
         }
       }
     }
@@ -150,7 +151,7 @@ class RequestLoggerLight implements RequestLogger
             $value = str_repeat('*', mb_strlen($name));
           }
 
-          Abc::$DL->abcRequestLogInsertPost($this->rqlId, $fullName, $value);
+          Abc::$DL->abcRequestLoggerLightInsertPost($this->rqlId, $fullName, $value);
         }
       }
     }
@@ -166,7 +167,7 @@ class RequestLoggerLight implements RequestLogger
 
     foreach ($queries as $query)
     {
-      Abc::$DL->abcRequestLogInsertQuery($this->rqlId, $query['query'], $query['time']);
+      Abc::$DL->abcRequestLoggerLightInsertQuery($this->rqlId, $query['query'], $query['time']);
     }
   }
 

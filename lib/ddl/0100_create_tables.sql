@@ -5,13 +5,13 @@
 /*  FileName : abc-request-logger-light.ecm                                       */
 /*  Platform : MySQL 5.6                                                          */
 /*  Version  :                                                                    */
-/*  Date     : zaterdag 25 november 2017                                          */
+/*  Date     : zaterdag 2 december 2017                                           */
 /*================================================================================*/
 /*================================================================================*/
 /* CREATE TABLES                                                                  */
 /*================================================================================*/
 
-CREATE TABLE LOG_REQUEST (
+CREATE TABLE ABC_REQUEST_LOG (
   rql_id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL,
   cmp_id SMALLINT UNSIGNED,
   pag_id SMALLINT UNSIGNED,
@@ -32,68 +32,68 @@ CREATE TABLE LOG_REQUEST (
 );
 
 /*
-COMMENT ON COLUMN LOG_REQUEST.rql_timestamp
+COMMENT ON COLUMN ABC_REQUEST_LOG.rql_timestamp
 The timestamp of the HTTP request
 */
 
 /*
-COMMENT ON COLUMN LOG_REQUEST.rql_request
+COMMENT ON COLUMN ABC_REQUEST_LOG.rql_request
 The requested URL
 */
 
 /*
-COMMENT ON COLUMN LOG_REQUEST.rql_method
+COMMENT ON COLUMN ABC_REQUEST_LOG.rql_method
 The request method used to access the page
 */
 
 /*
-COMMENT ON COLUMN LOG_REQUEST.rql_referrer
+COMMENT ON COLUMN ABC_REQUEST_LOG.rql_referrer
 The URL of the page which referred the user agent to the page
 */
 
 /*
-COMMENT ON COLUMN LOG_REQUEST.rql_ip
+COMMENT ON COLUMN ABC_REQUEST_LOG.rql_ip
 The IP address from which the page is requested
 */
 
 /*
-COMMENT ON COLUMN LOG_REQUEST.rql_accept_language
+COMMENT ON COLUMN ABC_REQUEST_LOG.rql_accept_language
 The accepted languages by the user agent
 */
 
 /*
-COMMENT ON COLUMN LOG_REQUEST.rql_user_agent
+COMMENT ON COLUMN ABC_REQUEST_LOG.rql_user_agent
 The user agent use the request the page
 */
 
 /*
-COMMENT ON COLUMN LOG_REQUEST.rql_status_code
+COMMENT ON COLUMN ABC_REQUEST_LOG.rql_status_code
 The HTTP status code.
 */
 
 /*
-COMMENT ON COLUMN LOG_REQUEST.rql_number_of_queries
+COMMENT ON COLUMN ABC_REQUEST_LOG.rql_number_of_queries
 The number of queries executed for processing the page request
 */
 
 /*
-COMMENT ON COLUMN LOG_REQUEST.rql_time
+COMMENT ON COLUMN ABC_REQUEST_LOG.rql_time
 The (real) time required for processing the page request
 */
 
-CREATE TABLE LOG_REQUEST_COOKIE (
+CREATE TABLE ABC_REQUEST_LOG_COOKIE (
   rql_id INTEGER UNSIGNED NOT NULL,
   rcl_variable VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   rcl_value MEDIUMTEXT CHARACTER SET utf8 COLLATE utf8_general_ci
 );
 
-CREATE TABLE LOG_REQUEST_POST (
+CREATE TABLE ABC_REQUEST_LOG_POST (
   rql_id INTEGER UNSIGNED NOT NULL,
   rlp_variable VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   rlp_value MEDIUMTEXT CHARACTER SET utf8 COLLATE utf8_general_ci
 );
 
-CREATE TABLE LOG_REQUEST_QUERY (
+CREATE TABLE ABC_REQUEST_LOG_QUERY (
   rqq_id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL,
   rql_id INTEGER UNSIGNED NOT NULL,
   rqq_query MEDIUMTEXT NOT NULL,
@@ -105,16 +105,16 @@ CREATE TABLE LOG_REQUEST_QUERY (
 /* CREATE INDEXES                                                                 */
 /*================================================================================*/
 
-CREATE INDEX IX_FK_LOG_REQUEST ON LOG_REQUEST (pag_id);
+CREATE INDEX IX_FK_ABC_REQUEST_LOG ON ABC_REQUEST_LOG (pag_id);
 
-CREATE INDEX IX_FK_LOG_REQUEST1 ON LOG_REQUEST (usr_id);
+CREATE INDEX IX_FK_ABC_REQUEST_LOG1 ON ABC_REQUEST_LOG (usr_id);
 
-CREATE INDEX IX_FK_LOG_REQUEST2 ON LOG_REQUEST (cmp_id);
+CREATE INDEX IX_FK_ABC_REQUEST_LOG2 ON ABC_REQUEST_LOG (cmp_id);
 
-CREATE INDEX IX_FK_LOG_REQUEST3 ON LOG_REQUEST (ses_id);
+CREATE INDEX IX_FK_ABC_REQUEST_LOG3 ON ABC_REQUEST_LOG (ses_id);
 
-CREATE INDEX IX_FK_LOG_REQUEST_COOKIE ON LOG_REQUEST_COOKIE (rql_id);
+CREATE INDEX IX_FK_ABC_REQUEST_LOG_COOKIE ON ABC_REQUEST_LOG_COOKIE (rql_id);
 
-CREATE INDEX rql_id ON LOG_REQUEST_POST (rql_id);
+CREATE INDEX rql_id ON ABC_REQUEST_LOG_POST (rql_id);
 
-CREATE INDEX IX_FK_LOG_REQUEST_QUERY ON LOG_REQUEST_QUERY (rql_id);
+CREATE INDEX IX_FK_ABC_REQUEST_LOG_QUERY ON ABC_REQUEST_LOG_QUERY (rql_id);

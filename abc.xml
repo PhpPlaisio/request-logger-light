@@ -1,0 +1,18 @@
+<abc>
+    <database>
+        <provides>
+            <table>ABC_REQUEST_LOG</table>
+            <table>ABC_REQUEST_LOG_COOKIE</table>
+            <table>ABC_REQUEST_LOG_POST</table>
+            <table>ABC_REQUEST_LOG_QUERY</table>
+        </provides>
+        <scripts>
+            <script>lib/ddl/0100_create_tables.sql</script>
+        </scripts>
+    </database>
+    <stratum>
+        <includes>
+            <include>lib/psql/**/*.psql</include>
+        </includes>
+    </stratum>
+</abc>

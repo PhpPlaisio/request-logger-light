@@ -9,9 +9,9 @@
   "type": "library",
   "license": "MIT",
   "require": {
-    "php": ">=7.0.0",
-    "setbased/abc": "^0.10.21",
-    "setbased/abc-request-logger": "^1.0.0"
+    "php": ">=7.1.0",
+    "setbased/abc": "^0.10.35",
+    "setbased/abc-request-logger": "^2.0.0"
   },
   "require-dev": {
     "phing/phing": "^2.0.0"

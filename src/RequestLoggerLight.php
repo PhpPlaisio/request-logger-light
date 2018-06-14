@@ -1,5 +1,5 @@
 <?php
-//----------------------------------------------------------------------------------------------------------------------
+
 namespace SetBased\Abc\RequestLogger;
 
 use SetBased\Abc\Abc;
@@ -60,7 +60,7 @@ class RequestLoggerLight implements RequestLogger
    * @api
    * @since 1.0.0
    */
-  public function logRequest($status)
+  public function logRequest(int $status): void
   {
     if ($this->logRequests)
     {
@@ -102,7 +102,7 @@ class RequestLoggerLight implements RequestLogger
    * @param array       $cookies    must be $_COOKIES
    * @param string|null $parentName must not be used, intended for use by recursive calls only.
    */
-  private function requestLogCookie($cookies, $parentName = null)
+  private function requestLogCookie(array $cookies, ?string $parentName = null): void
   {
     if (is_array($cookies))
     {
@@ -131,7 +131,7 @@ class RequestLoggerLight implements RequestLogger
    * @param array       $post       Must be $_POST (except for recursive calls).
    * @param string|null $parentName Must not be used (except for recursive calls).
    */
-  private function requestLogPost($post, $parentName = null)
+  private function requestLogPost(array $post, ?string $parentName = null): void
   {
     if (is_array($post))
     {
@@ -161,7 +161,7 @@ class RequestLoggerLight implements RequestLogger
   /**
    * Logs the executed SQL queries into the database.
    */
-  private function requestLogQuery()
+  private function requestLogQuery(): void
   {
     $queries = Abc::$DL->getQueryLog();
 

@@ -10,7 +10,7 @@
   "license": "MIT",
   "require": {
     "php": ">=7.1.0",
-    "setbased/abc": "^0.10.35",
+    "setbased/abc": "*",
     "setbased/abc-request-logger": "^2.0.0"
   },
   "require-dev": {

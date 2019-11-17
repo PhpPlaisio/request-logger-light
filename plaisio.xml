@@ -1,4 +1,4 @@
-<abc>
+<plaisio>
     <database>
         <provides>
             <table>ABC_REQUEST_LOG</table>
@@ -15,4 +15,4 @@
             <include>lib/psql/**/*.psql</include>
         </includes>
     </stratum>
-</abc>
+</plaisio>

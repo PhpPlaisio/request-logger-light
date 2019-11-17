@@ -148,7 +148,7 @@ class RequestLoggerLight implements RequestLogger
         else
         {
           // Don't log passwords.
-          if (strpos($name, 'password')!==false)
+          if (is_string($name) && strpos($name, 'password')!==false)
           {
             $value = str_repeat('*', mb_strlen($name));
           }

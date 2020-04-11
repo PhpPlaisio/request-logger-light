@@ -83,14 +83,14 @@ class RequestLoggerLight implements RequestLogger
 
       if ($this->logRequestDetails)
       {
-        $oldLogQueries        = Nub::$DL::$logQueries;
-        Nub::$DL::$logQueries = false;
+        $oldLogQueries        = Nub::$DL->logQueries;
+        Nub::$DL->logQueries = false;
 
         $this->requestLogQuery();
         $this->requestLogPost($_POST);
         $this->requestLogCookie($_COOKIE);
 
-        Nub::$DL::$logQueries = $oldLogQueries;
+        Nub::$DL->logQueries = $oldLogQueries;
       }
     }
   }

@@ -113,7 +113,7 @@ class RequestLoggerLight implements RequestLogger
 
         if (is_array($value))
         {
-          $this->requestLogCookie($value, $fullName);
+          $this->requestLogCookie($value, (string)$fullName);
         }
         else
         {
@@ -142,7 +142,7 @@ class RequestLoggerLight implements RequestLogger
 
         if (is_array($value))
         {
-          $this->requestLogPost($value, $fullName);
+          $this->requestLogPost($value, (string)$fullName);
         }
         else
         {

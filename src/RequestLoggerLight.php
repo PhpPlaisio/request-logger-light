@@ -152,7 +152,7 @@ class RequestLoggerLight implements RequestLogger
             $value = str_repeat('*', mb_strlen($name));
           }
 
-          Nub::$DL->abcRequestLoggerLightInsertPost($this->rqlId, $fullName, $value);
+          Nub::$DL->abcRequestLoggerLightInsertPost($this->rqlId, (string)$fullName, $value);
         }
       }
     }

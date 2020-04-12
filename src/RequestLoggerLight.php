@@ -43,7 +43,6 @@ class RequestLoggerLight implements RequestLogger
   public $rqlId;
 
   //--------------------------------------------------------------------------------------------------------------------
-
   /**
    * Object constructor.
    */
@@ -118,7 +117,7 @@ class RequestLoggerLight implements RequestLogger
         }
         else
         {
-          Nub::$DL->abcRequestLoggerLightInsertCookie($this->rqlId, $fullName, $value);
+          Nub::$DL->abcRequestLoggerLightInsertCookie($this->rqlId, (string)$fullName, $value);
         }
       }
     }

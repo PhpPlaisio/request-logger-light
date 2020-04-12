@@ -109,15 +109,15 @@ class RequestLoggerLight implements RequestLogger
     {
       foreach ($cookies as $name => $value)
       {
-        $fullName = ($parentName===null) ? $name : $parentName.'['.$name.']';
+        $fullName = ($parentName===null) ? (string)$name : $parentName.'['.$name.']';
 
         if (is_array($value))
         {
-          $this->requestLogCookie($value, (string)$fullName);
+          $this->requestLogCookie($value, $fullName);
         }
         else
         {
-          Nub::$DL->abcRequestLoggerLightInsertCookie($this->rqlId, (string)$fullName, $value);
+          Nub::$DL->abcRequestLoggerLightInsertCookie($this->rqlId, $fullName, $value);
         }
       }
     }
@@ -138,11 +138,11 @@ class RequestLoggerLight implements RequestLogger
     {
       foreach ($post as $name => $value)
       {
-        $fullName = ($parentName===null) ? $name : $parentName.'['.$name.']';
+        $fullName = ($parentName===null) ? (string)$name : $parentName.'['.$name.']';
 
         if (is_array($value))
         {
-          $this->requestLogPost($value, (string)$fullName);
+          $this->requestLogPost($value, $fullName);
         }
         else
         {
@@ -152,7 +152,7 @@ class RequestLoggerLight implements RequestLogger
             $value = str_repeat('*', mb_strlen($name));
           }
 
-          Nub::$DL->abcRequestLoggerLightInsertPost($this->rqlId, (string)$fullName, $value);
+          Nub::$DL->abcRequestLoggerLightInsertPost($this->rqlId, $fullName, $value);
         }
       }
     }

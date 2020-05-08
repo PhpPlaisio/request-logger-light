@@ -9,12 +9,12 @@
   "require": {
     "php": ">=7.3",
     "ext-mbstring": "*",
-    "plaisio/kernel": "^1.1",
+    "plaisio/kernel": "^2.0",
     "plaisio/request-logger": "^1.1"
   },
   "require-dev": {
     "phing/phing": "^2.0",
-    "plaisio/console": "^1.0",
+    "plaisio/console": "^1.1",
     "setbased/php-stratum-mysql": "^5.0"
   },
   "autoload": {

@@ -65,6 +65,8 @@ class RequestLoggerLight implements RequestLogger
   {
     if ($this->logRequests)
     {
+      $time0 = Nub::$nub->request->getRequestTime();
+
       $this->rqlId = Nub::$nub->DL->abcRequestLoggerLightInsertRequest(
         Nub::$nub->session->getSesId(),
         Nub::$nub->companyResolver->getCmpId(),
@@ -72,17 +74,17 @@ class RequestLoggerLight implements RequestLogger
         Nub::$nub->requestHandler->getPagId(),
         mb_substr(Nub::$nub->request->getRequestUri() ?? '', 0, C::LEN_RQL_REQUEST),
         mb_substr(Nub::$nub->request->getMethod() ?? '', 0, C::LEN_RQL_METHOD),
-        mb_substr($_SERVER['HTTP_REFERER'] ?? '', 0, C::LEN_RQL_REFERRER),
-        $_SERVER['REMOTE_ADDR'] ?? null,
-        mb_substr($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '', 0, C::LEN_RQL_ACCEPT_LANGUAGE),
-        mb_substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, C::LEN_RQL_USER_AGENT),
+        mb_substr(Nub::$nub->request->getReferrer() ?? '', 0, C::LEN_RQL_REFERRER),
+        Nub::$nub->request->getRemoteIp(),
+        mb_substr(Nub::$nub->request->getAcceptLanguage() ?? '', 0, C::LEN_RQL_ACCEPT_LANGUAGE),
+        mb_substr(Nub::$nub->request->getUserAgent() ?? '', 0, C::LEN_RQL_USER_AGENT),
         $status,
         count(Nub::$nub->DL->getQueryLog()),
-        (Nub::$nub->time0!==null) ? microtime(true) - Nub::$nub->time0 : null);
+        ($time0!==null) ? microtime(true) - $time0 : null);
 
       if ($this->logRequestDetails)
       {
-        $oldLogQueries        = Nub::$nub->DL->logQueries;
+        $oldLogQueries            = Nub::$nub->DL->logQueries;
         Nub::$nub->DL->logQueries = false;
 
         $this->requestLogQuery();

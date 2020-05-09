@@ -107,20 +107,17 @@ class RequestLoggerLight implements RequestLogger
    */
   private function requestLogCookie(array $cookies, ?string $parentName = null): void
   {
-    if (is_array($cookies))
+    foreach ($cookies as $name => $value)
     {
-      foreach ($cookies as $name => $value)
-      {
-        $fullName = ($parentName===null) ? (string)$name : $parentName.'['.$name.']';
+      $fullName = ($parentName===null) ? (string)$name : $parentName.'['.$name.']';
 
-        if (is_array($value))
-        {
-          $this->requestLogCookie($value, $fullName);
-        }
-        else
-        {
-          Nub::$nub->DL->abcRequestLoggerLightInsertCookie($this->rqlId, $fullName, $value);
-        }
+      if (is_array($value))
+      {
+        $this->requestLogCookie($value, $fullName);
+      }
+      else
+      {
+        Nub::$nub->DL->abcRequestLoggerLightInsertCookie($this->rqlId, $fullName, $value);
       }
     }
   }
@@ -136,26 +133,23 @@ class RequestLoggerLight implements RequestLogger
    */
   private function requestLogPost(array $post, ?string $parentName = null): void
   {
-    if (is_array($post))
+    foreach ($post as $name => $value)
     {
-      foreach ($post as $name => $value)
+      $fullName = ($parentName===null) ? (string)$name : $parentName.'['.$name.']';
+
+      if (is_array($value))
       {
-        $fullName = ($parentName===null) ? (string)$name : $parentName.'['.$name.']';
-
-        if (is_array($value))
+        $this->requestLogPost($value, $fullName);
+      }
+      else
+      {
+        // Don't log passwords.
+        if (is_string($name) && strpos($name, 'password')!==false)
         {
-          $this->requestLogPost($value, $fullName);
+          $value = str_repeat('*', mb_strlen($name));
         }
-        else
-        {
-          // Don't log passwords.
-          if (is_string($name) && strpos($name, 'password')!==false)
-          {
-            $value = str_repeat('*', mb_strlen($name));
-          }
 
-          Nub::$nub->DL->abcRequestLoggerLightInsertPost($this->rqlId, $fullName, $value);
-        }
+        Nub::$nub->DL->abcRequestLoggerLightInsertPost($this->rqlId, $fullName, $value);
       }
     }
   }

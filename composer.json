@@ -9,13 +9,16 @@
   "require": {
     "php": ">=7.3",
     "ext-mbstring": "*",
-    "plaisio/kernel": "^2.0",
-    "plaisio/request-core": "^0.10.2",
-    "plaisio/request-logger": "^1.1"
+    "plaisio/company-resolver": "^2.0",
+    "plaisio/kernel": "^3.0",
+    "plaisio/request": "^0.10.3",
+    "plaisio/request-handler": "^1.2",
+    "plaisio/request-logger": "^1.2",
+    "plaisio/session": "^3.0"
   },
   "require-dev": {
     "phing/phing": "^2.0",
-    "plaisio/console": "^1.1",
+    "plaisio/console": "^2.0.1",
     "setbased/php-stratum-mysql": "^5.0"
   },
   "autoload": {

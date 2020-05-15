@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace Plaisio\RequestLogger;
 
 use Plaisio\C;
-use Plaisio\Kernel\Nub;
+use Plaisio\PlaisioObject;
 
 /**
  * A HTTP page request logger for light and development websites.
  */
-class RequestLoggerLight implements RequestLogger
+class RequestLoggerLight extends PlaisioObject implements RequestLogger
 {
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -20,7 +20,7 @@ class RequestLoggerLight implements RequestLogger
    * @api
    * @since 1.0.0
    */
-  public $logRequestDetails;
+  public $logRequestDetails = false;
 
   /**
    * If true the HTTP page request must be logged.
@@ -30,7 +30,7 @@ class RequestLoggerLight implements RequestLogger
    * @api
    * @since 1.0.0
    */
-  public $logRequests;
+  public $logRequests = true;
 
   /**
    * The ID of the logged page request.
@@ -41,16 +41,6 @@ class RequestLoggerLight implements RequestLogger
    * @since 1.0.0
    */
   public $rqlId;
-
-  //--------------------------------------------------------------------------------------------------------------------
-  /**
-   * Object constructor.
-   */
-  public function __construct()
-  {
-    $this->logRequests       = true;
-    $this->logRequestDetails = false;
-  }
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -65,33 +55,33 @@ class RequestLoggerLight implements RequestLogger
   {
     if ($this->logRequests)
     {
-      $time0 = Nub::$nub->request->getRequestTime();
+      $time0 = $this->nub->request->getRequestTime();
 
-      $this->rqlId = Nub::$nub->DL->abcRequestLoggerLightInsertRequest(
-        Nub::$nub->session->getSesId(),
-        Nub::$nub->companyResolver->getCmpId(),
-        Nub::$nub->session->getUsrId(),
-        Nub::$nub->requestHandler->getPagId(),
-        mb_substr(Nub::$nub->request->getRequestUri() ?? '', 0, C::LEN_RQL_REQUEST),
-        mb_substr(Nub::$nub->request->getMethod() ?? '', 0, C::LEN_RQL_METHOD),
-        mb_substr(Nub::$nub->request->getReferrer() ?? '', 0, C::LEN_RQL_REFERRER),
-        Nub::$nub->request->getRemoteIp(),
-        mb_substr(Nub::$nub->request->getAcceptLanguage() ?? '', 0, C::LEN_RQL_ACCEPT_LANGUAGE),
-        mb_substr(Nub::$nub->request->getUserAgent() ?? '', 0, C::LEN_RQL_USER_AGENT),
+      $this->rqlId = $this->nub->DL->abcRequestLoggerLightInsertRequest(
+        $this->nub->session->sesId,
+        $this->nub->company->cmpId,
+        $this->nub->session->usrId,
+        $this->nub->requestHandler->getPagId(),
+        mb_substr($this->nub->request->getRequestUri() ?? '', 0, C::LEN_RQL_REQUEST),
+        mb_substr($this->nub->request->getMethod() ?? '', 0, C::LEN_RQL_METHOD),
+        mb_substr($this->nub->request->getReferrer() ?? '', 0, C::LEN_RQL_REFERRER),
+        $this->nub->request->getRemoteIp(),
+        mb_substr($this->nub->request->getAcceptLanguage() ?? '', 0, C::LEN_RQL_ACCEPT_LANGUAGE),
+        mb_substr($this->nub->request->getUserAgent() ?? '', 0, C::LEN_RQL_USER_AGENT),
         $status,
-        count(Nub::$nub->DL->getQueryLog()),
+        count($this->nub->DL->getQueryLog()),
         ($time0!==null) ? microtime(true) - $time0 : null);
 
       if ($this->logRequestDetails)
       {
-        $oldLogQueries            = Nub::$nub->DL->logQueries;
-        Nub::$nub->DL->logQueries = false;
+        $oldLogQueries             = $this->nub->DL->logQueries;
+        $this->nub->DL->logQueries = false;
 
         $this->requestLogQuery();
         $this->requestLogPost($_POST);
         $this->requestLogCookie($_COOKIE);
 
-        Nub::$nub->DL->logQueries = $oldLogQueries;
+        $this->nub->DL->logQueries = $oldLogQueries;
       }
     }
   }
@@ -117,7 +107,7 @@ class RequestLoggerLight implements RequestLogger
       }
       else
       {
-        Nub::$nub->DL->abcRequestLoggerLightInsertCookie($this->rqlId, $fullName, $value);
+        $this->nub->DL->abcRequestLoggerLightInsertCookie($this->rqlId, $fullName, $value);
       }
     }
   }
@@ -149,7 +139,7 @@ class RequestLoggerLight implements RequestLogger
           $value = str_repeat('*', mb_strlen($name));
         }
 
-        Nub::$nub->DL->abcRequestLoggerLightInsertPost($this->rqlId, $fullName, $value);
+        $this->nub->DL->abcRequestLoggerLightInsertPost($this->rqlId, $fullName, $value);
       }
     }
   }
@@ -160,11 +150,11 @@ class RequestLoggerLight implements RequestLogger
    */
   private function requestLogQuery(): void
   {
-    $queries = Nub::$nub->DL->getQueryLog();
+    $queries = $this->nub->DL->getQueryLog();
 
     foreach ($queries as $query)
     {
-      Nub::$nub->DL->abcRequestLoggerLightInsertQuery($this->rqlId, $query['query'], $query['time']);
+      $this->nub->DL->abcRequestLoggerLightInsertQuery($this->rqlId, $query['query'], $query['time']);
     }
   }
 

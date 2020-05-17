@@ -1,0 +1,5 @@
+<stratum>
+    <includes>
+        <include>lib/psql/**/*.psql</include>
+    </includes>
+</stratum>

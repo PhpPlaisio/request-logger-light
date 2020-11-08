@@ -14,6 +14,10 @@
  * @param p_rql_status_code        The HTTP status code.
  * @param p_rql_number_of_queries  The number of queries required for fulfilling the page request.
  * @param p_rql_time               The time in seconds that was required to process the page request.
+ *
+ * @type singleton1
+ *
+ * @return int
  */
 create procedure abc_request_logger_light_insert_request(in p_ses_id                 @abc_request_log.ses_id%type@,
                                                          in p_cmp_id                 @abc_request_log.cmp_id%type@,
@@ -29,8 +33,6 @@ create procedure abc_request_logger_light_insert_request(in p_ses_id            
                                                          in p_rql_number_of_queries  @abc_request_log.rql_number_of_queries%type@,
                                                          in p_rql_time               @abc_request_log.rql_time%type@)
 modifies sql data
--- type:   singleton1
--- return: int
 begin
   insert into ABC_REQUEST_LOG( ses_id
   ,                            cmp_id

@@ -12,7 +12,7 @@
     "plaisio/company-resolver": "^2.0",
     "plaisio/kernel": "^3.0",
     "plaisio/request": "^0.11.0",
-    "plaisio/request-handler": "^1.2",
+    "plaisio/request-handler": "^2.0",
     "plaisio/request-logger": "^1.2",
     "plaisio/session": "^4.0"
   },

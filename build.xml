@@ -2,6 +2,7 @@
     <!-- Run composer update and executes various other updates -->
     <target name="update">
         <exec command="composer update" checkreturn="true" passthru="true"/>
+        <phing phingfile="build.xml" target="kernel" haltonfailure="true"/>
     </target>
 
     <target name="kernel">

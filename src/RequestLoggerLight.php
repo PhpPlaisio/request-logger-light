@@ -20,7 +20,7 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
    * @api
    * @since 1.0.0
    */
-  public $logRequestDetails = false;
+  public bool $logRequestDetails = false;
 
   /**
    * If true the HTTP page request must be logged.
@@ -30,7 +30,7 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
    * @api
    * @since 1.0.0
    */
-  public $logRequests = true;
+  public bool $logRequests = true;
 
   /**
    * The ID of the logged page request.
@@ -40,7 +40,7 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
    * @api
    * @since 1.0.0
    */
-  public $rqlId;
+  public ?int $rqlId = null;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**

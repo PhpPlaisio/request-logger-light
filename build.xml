@@ -1,8 +1,16 @@
 <project name="PhpPlaisio" default="build" basedir=".">
     <!-- Run composer update and executes various other updates -->
     <target name="update">
-        <exec command="composer update" checkreturn="true" passthru="true"/>
+        <exec executable="composer" checkreturn="true" passthru="true">
+            <arg value="--ansi"/>
+            <arg value="update"/>
+        </exec>
         <phing phingfile="build.xml" target="kernel" haltonfailure="true"/>
+        <exec executable="composer" checkreturn="true" passthru="true">
+            <arg value="--ansi"/>
+            <arg value="outdated"/>
+            <arg value="--direct"/>
+        </exec>
     </target>
 
     <target name="kernel">
@@ -11,8 +19,6 @@
             <arg value="plaisio:kernel-properties"/>
         </exec>
     </target>
-
-
 
     <target name="build">
         <echo message=""/>

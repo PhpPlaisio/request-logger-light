@@ -9,17 +9,17 @@
   "require": {
     "php": ">=7.4",
     "ext-mbstring": "*",
-    "plaisio/company-resolver": "^2.0",
+    "plaisio/company-resolver": "^2.0.0",
     "plaisio/kernel": "^3.1.1",
     "plaisio/request": "^0.13.0",
-    "plaisio/request-handler": "^2.0",
-    "plaisio/request-logger": "^1.2",
-    "plaisio/session": "^4.0"
+    "plaisio/request-handler": "^2.0.0",
+    "plaisio/request-logger": "^1.2.0",
+    "plaisio/session": "^4.0.0"
   },
   "require-dev": {
     "phing/phing": "^2.16.3",
-    "plaisio/console": "^2.4.6",
-    "setbased/php-stratum-mysql": "^6.1"
+    "plaisio/console": "^2.4.8",
+    "setbased/php-stratum-mysql": "^6.3.0"
   },
   "autoload": {
     "psr-4": {

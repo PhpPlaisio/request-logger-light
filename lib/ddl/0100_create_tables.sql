@@ -1,11 +1,11 @@
 /*================================================================================*/
 /* DDL SCRIPT                                                                     */
 /*================================================================================*/
-/*  Title    : ABC-Framework: Request Logger for light websites and development   */
-/*  FileName : abc-request-logger-light.ecm                                       */
+/*  Title    : PhpPlaisiok: Request Logger for light websites and development     */
+/*  FileName : request-logger-light.ecm                                           */
 /*  Platform : MySQL 5.6                                                          */
 /*  Version  :                                                                    */
-/*  Date     : zaterdag 2 december 2017                                           */
+/*  Date     : woensdag 17 maart 2021                                             */
 /*================================================================================*/
 /*================================================================================*/
 /* CREATE TABLES                                                                  */
@@ -18,13 +18,13 @@ CREATE TABLE ABC_REQUEST_LOG (
   ses_id INTEGER UNSIGNED,
   usr_id INTEGER UNSIGNED,
   rql_timestamp TIMESTAMP DEFAULT now() NOT NULL,
-  rql_request VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci,
-  rql_method VARCHAR(8) CHARACTER SET utf8 COLLATE utf8_general_ci,
-  rql_referrer VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci,
+  rql_request VARCHAR(255),
+  rql_method VARCHAR(8),
+  rql_referrer VARCHAR(255),
   rql_ip INT UNSIGNED,
-  rql_host_name VARCHAR(80) CHARACTER SET utf8 COLLATE utf8_general_ci,
-  rql_accept_language VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci,
-  rql_user_agent VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci,
+  rql_host_name VARCHAR(80),
+  rql_accept_language VARCHAR(64),
+  rql_user_agent VARCHAR(255),
   rql_status_code SMALLINT,
   rql_number_of_queries INT,
   rql_time FLOAT,

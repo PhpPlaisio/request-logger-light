@@ -26,7 +26,7 @@ create procedure abc_request_logger_light_insert_request(in p_ses_id            
                                                          in p_rql_request            @abc_request_log.rql_request%type@,
                                                          in p_rql_method             @abc_request_log.rql_method%type@,
                                                          in p_rql_referrer           @abc_request_log.rql_referrer%type@,
-                                                         in p_remote_addr            varchar(15),
+                                                         in p_remote_addr            binary(16),
                                                          in p_rql_accept_language    @abc_request_log.rql_accept_language%type@,
                                                          in p_rql_user_agent         @abc_request_log.rql_user_agent%type@,
                                                          in p_rql_status_code        @abc_request_log.rql_status_code%type@,
@@ -56,7 +56,7 @@ begin
   ,       p_rql_request
   ,       p_rql_method
   ,       p_rql_referrer
-  ,       inet_aton(p_remote_addr)
+  ,       p_remote_addr
   ,       p_rql_accept_language
   ,       p_rql_user_agent
   ,       p_rql_status_code

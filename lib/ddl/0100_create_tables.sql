@@ -5,7 +5,7 @@
 /*  FileName : request-logger-light.ecm                                           */
 /*  Platform : MySQL 5.6                                                          */
 /*  Version  :                                                                    */
-/*  Date     : woensdag 17 maart 2021                                             */
+/*  Date     : dinsdag 27 april 2021                                              */
 /*================================================================================*/
 /*================================================================================*/
 /* CREATE TABLES                                                                  */
@@ -21,7 +21,7 @@ CREATE TABLE ABC_REQUEST_LOG (
   rql_request VARCHAR(255),
   rql_method VARCHAR(8),
   rql_referrer VARCHAR(255),
-  rql_ip INT UNSIGNED,
+  rql_ip BINARY(16),
   rql_host_name VARCHAR(80),
   rql_accept_language VARCHAR(64),
   rql_user_agent VARCHAR(255),
@@ -83,14 +83,14 @@ The (real) time required for processing the page request
 
 CREATE TABLE ABC_REQUEST_LOG_COOKIE (
   rql_id INTEGER UNSIGNED NOT NULL,
-  rcl_variable VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  rcl_value MEDIUMTEXT CHARACTER SET utf8 COLLATE utf8_general_ci
+  rcl_variable VARCHAR(255) NOT NULL,
+  rcl_value MEDIUMTEXT
 );
 
 CREATE TABLE ABC_REQUEST_LOG_POST (
   rql_id INTEGER UNSIGNED NOT NULL,
-  rlp_variable VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  rlp_value MEDIUMTEXT CHARACTER SET utf8 COLLATE utf8_general_ci
+  rlp_variable VARCHAR(255) NOT NULL,
+  rlp_value MEDIUMTEXT
 );
 
 CREATE TABLE ABC_REQUEST_LOG_QUERY (

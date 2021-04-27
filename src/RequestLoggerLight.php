@@ -57,6 +57,12 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
     {
       $time0 = $this->nub->request->getRequestTime();
 
+      $ip = $this->nub->request->getRemoteIp();
+      if (!str_contains($ip, ':'))
+      {
+        $ip = '::ffff:'.$ip;
+      }
+
       $this->rqlId = $this->nub->DL->abcRequestLoggerLightInsertRequest(
         $this->nub->session->sesId,
         $this->nub->company->cmpId,
@@ -65,7 +71,7 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
         mb_substr($this->nub->request->getRequestUri() ?? '', 0, C::LEN_RQL_REQUEST),
         mb_substr($this->nub->request->getMethod() ?? '', 0, C::LEN_RQL_METHOD),
         mb_substr($this->nub->request->getReferrer() ?? '', 0, C::LEN_RQL_REFERRER),
-        $this->nub->request->getRemoteIp(),
+        inet_pton($ip),
         mb_substr($this->nub->request->getAcceptLanguage() ?? '', 0, C::LEN_RQL_ACCEPT_LANGUAGE),
         mb_substr($this->nub->request->getUserAgent() ?? '', 0, C::LEN_RQL_USER_AGENT),
         $status,

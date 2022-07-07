@@ -43,6 +43,7 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
   public ?int $rqlId = null;
 
   //--------------------------------------------------------------------------------------------------------------------
+
   /**
    * Logs the HTTP page request.
    *
@@ -65,17 +66,26 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
 
       try
       {
-        $cmp = $this->nub->company->cmpId;
+        $cmpId = $this->nub->company->cmpId;
       }
       catch (\Throwable $e)
       {
-        $cmp = null;
+        $cmpId = null;
+      }
+
+      try
+      {
+        $usrId = $this->nub->session->usrId;
+      }
+      catch (\Throwable $e)
+      {
+        $usrId = null;
       }
 
       $this->rqlId = $this->nub->DL->abcRequestLoggerLightInsertRequest(
         $this->nub->session->sesId,
-        $cmp,
-        $this->nub->session->usrId,
+        $cmpId,
+        $usrId,
         $this->nub->requestHandler->getPagId(),
         mb_substr($this->nub->request->getRequestUri() ?? '', 0, C::LEN_RQL_REQUEST),
         mb_substr($this->nub->request->getMethod() ?? '', 0, C::LEN_RQL_METHOD),

@@ -7,13 +7,13 @@ use Plaisio\C;
 use Plaisio\PlaisioObject;
 
 /**
- * A HTTP page request logger for light and development websites.
+ * An HTTP page request logger for light and development websites.
  */
 class RequestLoggerLight extends PlaisioObject implements RequestLogger
 {
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * If true the HTTP page request details (i.e. cookies, post variables and queries) must be logged.
+   * Whether the HTTP page request details (i.e. cookies, post variables and queries) must be logged.
    *
    * @var bool
    *
@@ -23,7 +23,7 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
   public bool $logRequestDetails = false;
 
   /**
-   * If true the HTTP page request must be logged.
+   * Whether the HTTP page request must be logged.
    *
    * @var bool
    *
@@ -43,7 +43,6 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
   public ?int $rqlId = null;
 
   //--------------------------------------------------------------------------------------------------------------------
-
   /**
    * Logs the HTTP page request.
    *
@@ -159,7 +158,7 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
       else
       {
         // Don't log passwords.
-        if (is_string($name) && strpos($name, 'password')!==false)
+        if (is_string($name) && str_contains($name, 'password'))
         {
           $value = str_repeat('*', mb_strlen($name));
         }

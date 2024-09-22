@@ -15,54 +15,54 @@
  * @param p_rql_number_of_queries  The number of queries required for fulfilling the page request.
  * @param p_rql_time               The time in seconds that was required to process the page request.
  *
- * @type singleton1
- *
- * @return int
+ * @type singleton1 int
  */
-create procedure abc_request_logger_light_insert_request(in p_ses_id                 @abc_request_log.ses_id%type@,
-                                                         in p_cmp_id                 @abc_request_log.cmp_id%type@,
-                                                         in p_usr_id                 @abc_request_log.usr_id%type@,
-                                                         in p_pag_id                 @abc_request_log.pag_id%type@,
-                                                         in p_rql_request            @abc_request_log.rql_request%type@,
-                                                         in p_rql_method             @abc_request_log.rql_method%type@,
-                                                         in p_rql_referrer           @abc_request_log.rql_referrer%type@,
-                                                         in p_remote_addr            binary(16),
-                                                         in p_rql_accept_language    @abc_request_log.rql_accept_language%type@,
-                                                         in p_rql_user_agent         @abc_request_log.rql_user_agent%type@,
-                                                         in p_rql_status_code        @abc_request_log.rql_status_code%type@,
-                                                         in p_rql_number_of_queries  @abc_request_log.rql_number_of_queries%type@,
-                                                         in p_rql_time               @abc_request_log.rql_time%type@)
-modifies sql data
+create procedure abc_request_logger_light_insert_request
+(
+  in p_ses_id                int(10) unsigned, --                   type: ABC_REQUEST_LOG.ses_id
+  in p_cmp_id                smallint(5) unsigned, --               type: ABC_REQUEST_LOG.cmp_id
+  in p_usr_id                int(10) unsigned, --                   type: ABC_REQUEST_LOG.usr_id
+  in p_pag_id                smallint(5) unsigned, --               type: ABC_REQUEST_LOG.pag_id
+  in p_rql_request           varchar(255) character set utf8mb4, -- type: ABC_REQUEST_LOG.rql_request
+  in p_rql_method            varchar(8) character set utf8mb4, --   type: ABC_REQUEST_LOG.rql_method
+  in p_rql_referrer          varchar(255) character set utf8mb4, -- type: ABC_REQUEST_LOG.rql_referrer
+  in p_remote_addr           binary(16),
+  in p_rql_accept_language   varchar(64) character set utf8mb4, --  type: ABC_REQUEST_LOG.rql_accept_language
+  in p_rql_user_agent        varchar(255) character set utf8mb4, -- type: ABC_REQUEST_LOG.rql_user_agent
+  in p_rql_status_code       smallint(6), --                        type: ABC_REQUEST_LOG.rql_status_code
+  in p_rql_number_of_queries int(11), --                            type: ABC_REQUEST_LOG.rql_number_of_queries
+  in p_rql_time              float --                               type: ABC_REQUEST_LOG.rql_time
+)
+  modifies sql data
 begin
   insert into ABC_REQUEST_LOG( ses_id
-  ,                            cmp_id
-  ,                            usr_id
-  ,                            pag_id
-  ,                            rql_timestamp
-  ,                            rql_request
-  ,                            rql_method
-  ,                            rql_referrer
-  ,                            rql_ip
-  ,                            rql_accept_language
-  ,                            rql_user_agent
-  ,                            rql_status_code
-  ,                            rql_number_of_queries
-  ,                            rql_time )
-  values( p_ses_id
-  ,       p_cmp_id
-  ,       p_usr_id
-  ,       p_pag_id
-  ,       current_timestamp
-  ,       p_rql_request
-  ,       p_rql_method
-  ,       p_rql_referrer
-  ,       p_remote_addr
-  ,       p_rql_accept_language
-  ,       p_rql_user_agent
-  ,       p_rql_status_code
-  ,       p_rql_number_of_queries
-  ,       p_rql_time )
-  ;
+                             , cmp_id
+                             , usr_id
+                             , pag_id
+                             , rql_timestamp
+                             , rql_request
+                             , rql_method
+                             , rql_referrer
+                             , rql_ip
+                             , rql_accept_language
+                             , rql_user_agent
+                             , rql_status_code
+                             , rql_number_of_queries
+                             , rql_time )
+  values ( p_ses_id
+         , p_cmp_id
+         , p_usr_id
+         , p_pag_id
+         , current_timestamp
+         , p_rql_request
+         , p_rql_method
+         , p_rql_referrer
+         , p_remote_addr
+         , p_rql_accept_language
+         , p_rql_user_agent
+         , p_rql_status_code
+         , p_rql_number_of_queries
+         , p_rql_time );
 
-  select last_insert_id() rql_id;
+  select last_insert_id() as rql_id;
 end

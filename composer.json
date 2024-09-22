@@ -14,14 +14,12 @@
     "plaisio/request": "^0.13.1",
     "plaisio/request-handler": "^2.1.0",
     "plaisio/request-logger": "^1.3.0",
-    "plaisio/session": "^5.0.0"
+    "plaisio/session": "^5.0.0",
+    "setbased/php-stratum-mysql": "^7.0.0"
   },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
   "require-dev": {
-    "phing/phing": "^3.0.0-RC4",
-    "plaisio/console-kernel": "^1.0.1",
-    "setbased/php-stratum-mysql": "^6.6.0"
+    "phing/phing": "^3.0.0",
+    "plaisio/console-kernel": "^1.0.1"
   },
   "autoload": {
     "psr-4": {

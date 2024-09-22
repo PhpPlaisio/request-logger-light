@@ -7,16 +7,18 @@
  *
  * @type none
  */
-create procedure abc_request_logger_light_insert_query(in p_rql_id    @abc_request_log_query.rql_id%type@,
-                                                       in p_rqq_query @abc_request_log_query.rqq_query%type@,
-                                                       in p_rqq_time  @abc_request_log_query.rqq_time%type@)
-modifies sql data
+create procedure abc_request_logger_light_insert_query
+(
+  in p_rql_id    int(10) unsigned, --                 type: ABC_REQUEST_LOG_QUERY.rql_id
+  in p_rqq_query mediumtext character set utf8mb4, -- type: ABC_REQUEST_LOG_QUERY.rqq_query
+  in p_rqq_time  float --                             type: ABC_REQUEST_LOG_QUERY.rqq_time
+)
+  modifies sql data
 begin
   insert into ABC_REQUEST_LOG_QUERY( rql_id
-  ,                                  rqq_query
-  ,                                  rqq_time )
-  values( p_rql_id
-  ,       p_rqq_query
-  ,       p_rqq_time )
-  ;
+                                   , rqq_query
+                                   , rqq_time )
+  values ( p_rql_id
+         , p_rqq_query
+         , p_rqq_time );
 end

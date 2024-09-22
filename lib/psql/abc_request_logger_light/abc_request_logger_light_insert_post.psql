@@ -7,16 +7,18 @@
  *
  * @type none
  */
-create procedure abc_request_logger_light_insert_post(in p_rql_id       @abc_request_log_post.rql_id%type@
-,                                                     in p_rlp_variable @abc_request_log_post.rlp_variable%type@
-,                                                     in p_rlp_value    @abc_request_log_post.rlp_value%type@)
-modifies sql data
+create procedure abc_request_logger_light_insert_post
+(
+  in p_rql_id       int(10) unsigned, --                   type: ABC_REQUEST_LOG_POST.rql_id
+  in p_rlp_variable varchar(255) character set utf8mb4, -- type: ABC_REQUEST_LOG_POST.rlp_variable
+  in p_rlp_value    mediumtext character set utf8mb4 --    type: ABC_REQUEST_LOG_POST.rlp_value
+)
+  modifies sql data
 begin
   insert into ABC_REQUEST_LOG_POST( rql_id
-  ,                                 rlp_variable
-  ,                                 rlp_value  )
-  values( p_rql_id
-  ,       p_rlp_variable
-  ,       p_rlp_value )
-  ;
+                                  , rlp_variable
+                                  , rlp_value )
+  values ( p_rql_id
+         , p_rlp_variable
+         , p_rlp_value );
 end

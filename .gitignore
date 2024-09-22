@@ -1,7 +1,5 @@
 /.idea/
 /bin/
 /composer.lock
-/custom.task.properties
-/custom.type.properties
 /src/C.php
 /vendor

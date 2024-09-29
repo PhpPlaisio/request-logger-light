@@ -5,6 +5,7 @@ namespace Plaisio\RequestLogger;
 
 use Plaisio\C;
 use Plaisio\PlaisioObject;
+use Throwable;
 
 /**
  * An HTTP page request logger for light and development websites.
@@ -55,9 +56,9 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
   {
     if ($this->logRequests)
     {
-      $time0 = $this->nub->request->getRequestTime();
+      $time0 = $this->nub->request->requestTime;
 
-      $ip = $this->nub->request->getRemoteIp();
+      $ip = $this->nub->request->remoteIp;
       if ($ip!==null && !str_contains($ip, ':'))
       {
         $ip = '::ffff:'.$ip;
@@ -67,7 +68,7 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
       {
         $cmpId = $this->nub->company->cmpId;
       }
-      catch (\Throwable $e)
+      catch (Throwable $e)
       {
         $cmpId = null;
       }
@@ -76,22 +77,22 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
       {
         $usrId = $this->nub->session->usrId;
       }
-      catch (\Throwable $e)
+      catch (Throwable $e)
       {
         $usrId = null;
       }
 
-      $this->rqlId = $this->nub->DL->abcRequestLoggerLightInsertRequest(
+      $this->rqlId = $this->nub->DL->abcRequestLoggerLightInsertRequest( //
         $this->nub->session->sesId,
         $cmpId,
         $usrId,
         $this->nub->requestHandler->getPagId(),
-        mb_substr($this->nub->request->getRequestUri() ?? '', 0, C::LEN_RQL_REQUEST),
-        mb_substr($this->nub->request->getMethod() ?? '', 0, C::LEN_RQL_METHOD),
-        mb_substr($this->nub->request->getReferrer() ?? '', 0, C::LEN_RQL_REFERRER),
+        mb_substr($this->nub->request->requestUri, 0, C::LEN_RQL_REQUEST),
+        mb_substr($this->nub->request->method, 0, C::LEN_RQL_METHOD),
+        mb_substr($this->nub->request->referrer ?? '', 0, C::LEN_RQL_REFERRER),
         ($ip!==null) ? inet_pton($ip) : null,
-        mb_substr($this->nub->request->getAcceptLanguage() ?? '', 0, C::LEN_RQL_ACCEPT_LANGUAGE),
-        mb_substr($this->nub->request->getUserAgent() ?? '', 0, C::LEN_RQL_USER_AGENT),
+        mb_substr($this->nub->request->acceptLanguage, 0, C::LEN_RQL_ACCEPT_LANGUAGE),
+        mb_substr($this->nub->request->userAgent ?? '', 0, C::LEN_RQL_USER_AGENT),
         $status,
         count($this->nub->DL->getQueryLog()),
         ($time0!==null) ? microtime(true) - $time0 : null);

@@ -7,7 +7,7 @@
   ],
   "license": "MIT",
   "require": {
-    "php": ">=8.1",
+    "php": ">=8.3",
     "ext-mbstring": "*",
     "plaisio/company-resolver": "^2.1.0",
     "plaisio/kernel": "^3.2.1",

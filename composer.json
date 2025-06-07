@@ -18,7 +18,7 @@
     "setbased/php-stratum-mysql": "^7.0.1"
   },
   "require-dev": {
-    "phing/phing": "^3.0.0",
+    "phing/phing": "^3.0.1",
     "plaisio/console-kernel": "^1.0.1"
   },
   "autoload": {

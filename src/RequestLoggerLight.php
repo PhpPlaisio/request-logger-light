@@ -14,7 +14,7 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
 {
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Whether the HTTP page request details (i.e. cookies, post variables and queries) must be logged.
+   * Whether the HTTP page request details (i.e., cookies, post variables and queries) must be logged.
    *
    * @var bool
    *
@@ -115,7 +115,7 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
   /**
    * Logs the (by the user agent) sent cookies into the database.
    *
-   * Usage on this method on production environments is not recommended.
+   * Usage of this method on production environments is not recommended.
    *
    * @param array       $cookies    must be $_COOKIES
    * @param string|null $parentName must not be used, intended for use by recursive calls only.
@@ -141,7 +141,7 @@ class RequestLoggerLight extends PlaisioObject implements RequestLogger
   /**
    * Logs the post variables into the database.
    *
-   * Usage on this method on production environments is not recommended.
+   * Usage of this method on production environments is not recommended.
    *
    * @param array       $post       Must be $_POST (except for recursive calls).
    * @param string|null $parentName Must not be used (except for recursive calls).

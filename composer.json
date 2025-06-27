@@ -10,12 +10,12 @@
     "php": ">=8.3",
     "ext-mbstring": "*",
     "plaisio/company-resolver": "^2.2.0",
-    "plaisio/kernel": "^3.3.0",
-    "plaisio/request": "^1.0.1",
+    "plaisio/kernel": "^3.3.1",
+    "plaisio/request": "^2.0.0",
     "plaisio/request-handler": "^2.2.0",
     "plaisio/request-logger": "^1.4.0",
     "plaisio/session": "^5.1.0",
-    "setbased/php-stratum-mysql": "^7.1.1"
+    "setbased/php-stratum-mysql": "^7.2.0"
   },
   "require-dev": {
     "phing/phing": "^3.0.1",
